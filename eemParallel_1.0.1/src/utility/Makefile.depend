@@ -1,0 +1,10 @@
+Date.o: Date.cpp Date.h
+Dist.o: Dist.cpp Dist.h MyMap.h MyMat.h MyFunc.h \
+ MyException.h
+HypergeometricDistributionImpl.o: HypergeometricDistributionImpl.cpp \
+ HypergeometricDistributionImpl.h
+MyException.o: MyException.cpp MyException.h
+MyFunc.o: MyFunc.cpp MyFunc.h MyMap.h \
+ HypergeometricDistributionImpl.h
+MyMat.o: MyMat.cpp MyMat.h MyMap.h MyFunc.h MyException.h
+StopWatch.o: StopWatch.cpp StopWatch.h Date.h
