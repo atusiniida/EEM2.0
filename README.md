@@ -17,10 +17,10 @@ mv EEM2.0-master EEM2.0
 perl EEM2.0/perl/eem.pl  A.tab B.gmt
 ```
 A.tabは以下のような行列形式のフォーマット
->[tab]sample1[tab]sample2[tab]sample3
-gene1[tab]1.0[tab]2.0[tab]3.0
-gene2[tab]4.0[tab]5.0[tab]6.0
-gene3[tab]7.0[tab]8.0[tab]9.0
+>[tab]sample1[tab]sample2[tab]sample3  
+gene1[tab]1.0[tab]2.0[tab]3.0  
+gene2[tab]4.0[tab]5.0[tab]6.0  
+gene3[tab]7.0[tab]8.0[tab]9.0  
 
 B.gmtのフォーマットは以下を参照
 http://software.broadinstitute.org/cancer/software/genepattern/file-formats-guide#GMT
