@@ -7,6 +7,7 @@
 ```
 wget https://github.com/atusiniida/EEM2.0/archive/master.zip  
 unzip  master.zip    
+rm master.zip  
 mv EEM2.0-master EEM2.0  
 ```
 
@@ -45,7 +46,7 @@ perl EEM2.0/perl/postEEMprocessing.pl  -p X -c Y  -m Z A＿B.eem A.tab
 ```
 例えばテストデータを使うと
 ```
-perl EEM2.0/perl/postEEMprocessing.pl  -p 3 -c 0.75 coadExp3000＿hallmark.eem EEM2.0/data/coadExp3000.tab
+perl EEM2.0/perl/postEEMprocessing.pl  -p 4 -c 0.75 coadExp3000_hallmark.eem EEM2.0/data/coadExp3000.tab
 ```
 失敗する場合はR package "gplots"がインストール済みかチェック
 
