@@ -1,11 +1,17 @@
-インストール
+
+
+
+
+
+### インストール
 ```
 wget https://github.com/atusiniida/EEM2.0/archive/master.zip  
 unzip  master.zip    
 mv EEM2.0-master EEM2.0  
 ```
 
-EEMを発現データA.tab、遺伝子セットデータA.gmtに適用
+### EEMを実行
+発現データA.tab、遺伝子セットデータA.gmtに適用
 ```
 perl EEM2.0/perl/eem.pl  A.tab B.gmt
 ```
@@ -28,11 +34,11 @@ A＿B.eemができる
 * <font color="Orange">4列目のmoduleGenes</font>: seedGenesのうち共発現しているもの  
 
 
-module clustering
+### post-processing
 ```
 perl EEM2.0/perl/postEEMprocessing.pl   A＿B.eem A.tab
 ```
-
+実行するにはR package "gplots"のインストール必要　　
 -log10(p-value)がX以上のモジュールをcorrelation cutoff Yでクラスタリング、module個数Z未満のクラスターは捨てる (Default: X = 6 Y=0.7 Z =0)
 ```
 perl EEM2.0/perl/postEEMprocessing.pl  -p X -c Y  -m Z A＿B.eem A.tab
@@ -41,7 +47,7 @@ perl EEM2.0/perl/postEEMprocessing.pl  -p X -c Y  -m Z A＿B.eem A.tab
 ```
 perl EEM2.0/perl/postEEMprocessing.pl  -p 3 -c 0.75 coadExp3000＿hallmark.eem EEM2.0/data/coadExp3000.tab
 ```
-
+失敗する場合はR package "gplots"がインストール済みかチェック
 
 A＿B.posteem (ディレクトリ）の中に以下のファイルができる
 * module.tab:  module activity profileのmatrix

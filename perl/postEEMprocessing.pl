@@ -40,5 +40,7 @@ close(OUT);
 my $status = system("R --no-save < tmp${$}.R >& /dev/null");
 if($status==0){
     `rm tmp${$}.R`;
+}else{
+  warn "R has failed!"
 }
 exit($status);
