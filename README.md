@@ -45,13 +45,11 @@ A＿B.eemができる
 
 ### post-processing
 ```
-perl EEM2.0/perl/postEEMprocessing.pl   A＿B.eem A.tab
+perl EEM2.0/perl/postEEMprocessing.pl  -p X -c Y  -m Z A＿B.eem A.tab
 ```
 実行するにはR package "gplots"のインストール必要  
 -log10(p-value)がX以上のモジュールをcorrelation cutoff Yでクラスタリング、module個数Z未満のクラスターは捨てる (Default: X = 6 Y=0.7 Z =0)
-```
-perl EEM2.0/perl/postEEMprocessing.pl  -p X -c Y  -m Z A＿B.eem A.tab
-```
+
 例えばテストデータを使うと
 ```
 perl EEM2.0/perl/postEEMprocessing.pl  -p 4 -c 0.75 coadExp3000_hallmark.eem EEM2.0/data/coadExp3000.tab
