@@ -64,4 +64,4 @@ A＿B.posteem (ディレクトリ）の中に以下のファイルができる
 * module.collapsed.tab:  module activity profileのクラスターをまとめ、activity profileを平均化したたmeta module activity profile
 * module.collapsed.pdf: module.collapsed.tabのヒートマップ
 * module.gmt：module cluster中のmoduleの情報
-* [gene set ID].pdf: 各モジュールのseed genesのヒートマップ　red side barはmodule genesを示す。
+* [gene set ID].pdf: 各モジュールのseed genesのヒートマップ　colored top bar はactivity profile、red side barはmodule genesを示す。
