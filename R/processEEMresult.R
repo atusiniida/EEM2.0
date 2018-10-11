@@ -13,14 +13,16 @@ maxClusterCount<-10
 
 outdir<- paste(gsub(".eem","",eemFile),"posteem",sep=".")
 
-tmp<-read.table(expFile, sep="\t")
-s<-as.vector(t(tmp[1,2:ncol(tmp)]))
-g<-as.vector(tmp[2:nrow(tmp),1])
-tmp<-tmp[-1,]
-tmp<-tmp[,-1]
-E<-matrix(as.numeric(as.matrix(tmp)), ncol=length(s), nrow=length(g))
-colnames(E)<-s
-rownames(E)<-g
+#tmp<-read.table(expFile, sep="\t", row.names = NULL)
+#s<-as.vector(t(tmp[1,2:ncol(tmp)]))
+#g<-as.vector(tmp[2:nrow(tmp),1])
+#tmp<-tmp[-1,]
+#tmp<-tmp[,-1]
+#E<-matrix(as.numeric(as.matrix(tmp)), ncol=length(s), nrow=length(g))
+#colnames(E)<-s
+#rownames(E)<-g
+
+E<-as.matrix(read.table(expFile))
 
 tmp<-strsplit(scan(eemFile, what="character", sep="\n"), "\t")
 EEM<-list()
