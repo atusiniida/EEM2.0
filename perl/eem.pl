@@ -1,4 +1,4 @@
-#!/usr/bin/perl 
+#!/usr/bin/perl
 
 use strict;
 use warnings;
@@ -51,15 +51,15 @@ foreach my $expFile  (@exp){
         my $exp = $2;
         my $id = $exp."_".$geneset;
 	my $outFile = "${id}.eem";
-	-s $outFile and next; 
+	-s $outFile and next;
 	my $scriptFile = "tmp${$}.${id}.sh";
 	push(@script, $scriptFile);
-		
+
 open(OUT, ">$scriptFile");
 print OUT<<"EOF";
 #!/bin/tcsh
 #\$ -S /bin/tcsh
-#\$ -cwd $qsuboption 
+#\$ -cwd $qsuboption
 #\$ -v LD_LIBRARY_PATH=$ldlbpath
 
 $mpirunBin   -np \$NSLOTS   -machinefile \$TMPDIR/machines   $eemBin  -R 0.05,0.1,0.15 -o $outFile  $expFile  $gsFile
@@ -71,8 +71,8 @@ EOF
 
 foreach(@script){
    #while(system("qsub  $_")){
-    while(system("qsub -l s_vmem=${mem}G,mem_req=${mem}G $_")){   
-     sleep(10) 
+    while(system("qsub -l s_vmem=${mem}G,mem_req=${mem}G,os6  $_")){   
+     sleep(10)
      }
 }
 
@@ -102,4 +102,3 @@ sub  wait_for_SGE_finishing{
 	}
     }
 }
-
