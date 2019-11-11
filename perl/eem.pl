@@ -14,6 +14,16 @@ my $usage = "usage: $0 [-n numberOfChildren -m memorySize(Gbite)] expFile(*.tab)
 my $mem = 12;  #memory (G bite)
 my $n = 20;  # number of children
 
+
+my $os = "os7";
+my $moduleLoad = "module load openmpi/3.1.0";
+my $eemBin = "$base/eemParallel_1.0.1/bin/eemParallel";
+if($ENV{"OS_MAJOR_VERSION"} == 6){
+    $os = "os6";
+    $moduleLoad = "module load openmpi/2.1.5";
+    $eemBin = "$base/eemParallel_1.0.1/bin/eemParallelos6";
+ }
+
 my $argv = join(" ", @ARGV);
 if($argv =~ s/-n\s+([\d]+)//){
     $n = $1;
@@ -29,12 +39,6 @@ if($argv =~ /-\w\s/){
 
 my @exp = map {Cwd::abs_path($_)} grep {/\.tab$/ and -s} @ARGV or die $usage;
 my @geneset = map {Cwd::abs_path($_)} grep {/\.gmt$/ and -s} @ARGV or die $usage;
-my $eemBin = "$base/eemParallel_1.0.1/src/eem/eemParallel";
-#my $mpirunBin = "/usr/local/package/openmpi/current_gcc_static/bin/mpirun";
-#my $ldlbpath = "/usr/local/package/openmpi/current_gcc_static/lib:".$ENV{LD_LIBRARY_PATH};
-my $mpirunBin = "/usr/local/package/openmpi/1.8.4-static-gcc/bin/mpirun";
-my $ldlbpath = "/usr/local/package/openmpi/1.8.4-static-gcc/lib:".$ENV{LD_LIBRARY_PATH};
-$ldlbpath = "/usr/local/package/java/jdk1.7.0_72_32/jre/lib:".$ENV{LD_LIBRARY_PATH};
 
 my @script;
 
@@ -60,9 +64,9 @@ print OUT<<"EOF";
 #!/bin/tcsh
 #\$ -S /bin/tcsh
 #\$ -cwd $qsuboption
-#\$ -v LD_LIBRARY_PATH=$ldlbpath
 
-$mpirunBin   -np \$NSLOTS   -machinefile \$TMPDIR/machines   $eemBin  -R 0.05,0.1,0.15 -o $outFile  $expFile  $gsFile
+$moduleLoad
+mpirun   -np \$NSLOTS   -machinefile \$TMPDIR/machines   $eemBin  -R 0.05,0.1,0.15 -o $outFile  $expFile  $gsFile
 
 EOF
 
@@ -70,14 +74,15 @@ EOF
 }
 
 foreach(@script){
-   #while(system("qsub  $_")){
-    while(system("qsub -l s_vmem=${mem}G,mem_req=${mem}G,os6  $_")){   
+    my $qsub = "qsub -l s_vmem=${mem}G,mem_req=${mem}G,${os}  $_";
+    print $qsub."\n";
+    while(system($qsub)){   
      sleep(10)
      }
 }
 
 wait_for_SGE_finishing("tmp${$}.");
-`rm tmp${$}.*`;
+#`rm tmp${$}.*`;
 
 
 sub  wait_for_SGE_finishing{

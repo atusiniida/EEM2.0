@@ -1,4 +1,4 @@
-CXX     = /usr/local/package/openmpi/1.6.5-static-gcc/bin/mpic++
+CXX     = mpic++ 
 CXXFLAGS= -Wall -Wno-sign-compare -g
 CXXFLAGS+= -std=c++11 -DHAVE_UNORDERED_MAP
 CXXFLAGS+= -DHAVE_SHUFFLE

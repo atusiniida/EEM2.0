@@ -8,6 +8,7 @@
 #include "MyMap.h"
 #include <string>
 #include <mpi.h>
+#include <random>
 
 using std::vector;
 using std::MyMap;

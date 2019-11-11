@@ -11,6 +11,7 @@
 #include <iomanip>
 #include <cmath>
 #include <cassert>
+#include <random>
 
 #include "HypergeometricDistributionImpl.h"
 
