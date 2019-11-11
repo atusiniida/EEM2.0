@@ -61,8 +61,8 @@ foreach my $expFile  (@exp){
 
 open(OUT, ">$scriptFile");
 print OUT<<"EOF";
-#!/bin/tcsh
-#\$ -S /bin/tcsh
+#!/usr/local/bin/nosh
+#\$ -S /usr/local/bin/nosh
 #\$ -cwd $qsuboption
 
 $moduleLoad
