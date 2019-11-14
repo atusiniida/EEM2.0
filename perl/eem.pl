@@ -75,14 +75,14 @@ EOF
 
 foreach(@script){
     my $qsub = "qsub -l s_vmem=${mem}G,mem_req=${mem}G,${os}  $_";
-    print $qsub."\n";
+    # print $qsub."\n";
     while(system($qsub)){   
      sleep(10)
      }
 }
 
 wait_for_SGE_finishing("tmp${$}.");
-#`rm tmp${$}.*`;
+`rm tmp${$}.*`;
 
 
 sub  wait_for_SGE_finishing{

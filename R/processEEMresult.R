@@ -15,7 +15,7 @@ outdir<- paste(gsub(".eem","",eemFile),"posteem",sep=".")
 
 
 E<-as.matrix(read.table(expFile))
-
+E<-E[apply(E,1,var)!=0,]
 tmp<-strsplit(scan(eemFile, what="character", sep="\n"), "\t")
 EEM<-list()
 ids<-NULL
@@ -26,8 +26,8 @@ for( i  in  1:length(tmp)){
  P<-c(P,p)
  stmp<-strsplit(tmp[[i]][4],"[A-Za-z]+=", perl=T)[[1]][6]
  mtmp<-strsplit(tmp[[i]][4],"[A-Za-z]+=", perl=T)[[1]][7]
- seedGenes<-strsplit(gsub('\\[|\\]| ',"",stmp,perl=T), ",")[[1]]
- moduleGenes<-strsplit(gsub('\\[|\\]| ',"",mtmp,perl=T), ",")[[1]]
+ seedGenes<-intersect(strsplit(gsub('\\[|\\]| ',"",stmp,perl=T), ",")[[1]],rownames(E))
+ moduleGenes<-intersect(strsplit(gsub('\\[|\\]| ',"",mtmp,perl=T), ",")[[1]],rownames(E))
   EEM<-c(EEM, list(c(list(p), list(seedGenes),  list(moduleGenes))))
 }
 names(EEM)<-ids
