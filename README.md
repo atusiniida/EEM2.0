@@ -19,7 +19,7 @@ mv EEM2.0-master EEM2.0
 ```
 
 ### EEMを実行
-発現データA.tab、遺伝子セットデータA.gmtに適用
+発現データA.tab、遺伝子セットデータB.gmtに適用
 ```
 perl EEM2.0/perl/eem.pl  A.tab B.gmt
 ```
