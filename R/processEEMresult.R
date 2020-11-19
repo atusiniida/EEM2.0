@@ -256,22 +256,21 @@ for(i in 1:length(cluster)){
   c<-c(c, rep(i, length(cluster[[i]])))
 }
 names(c)<-tmp
-
 if(length(cluster)!=1){
   E<-E[names(c),]
   pdf(paste(outfile, ".pdf", sep=""))
-  heatmap(E, scale="none", hclustfun = my.hclust, RowSideColors = mapColor(c), col=my.col(100))
+  heatmap(E, scale="none", hclustfun = my.hclust, RowSideColors = mapColor(c), col=my.col(100),margins=c(10,10))
   dev.off()
   E2<-collapse.matrix(E,cluster)
   
   printMatrix(E2, paste(outfile, ".collapsed.tab", sep=""))
   
   pdf(paste(outfile, ".collapsed.pdf", sep=""))
-  heatmap(E2, scale="none", hclustfun = my.hclust, col=my.col(100))
+  heatmap(E2, scale="none", hclustfun = my.hclust, col=my.col(100),margins=c(10,10))
   dev.off()
 }else{
   pdf(paste(outfile, ".pdf", sep=""))
-  heatmap(E, scale="none", hclustfun = my.hclust, col=my.col(100))
+  heatmap(E, scale="none", hclustfun = my.hclust, col=my.col(100),margins=c(10,10))
   dev.off()
   E2<-collapse.matrix(E,cluster)
   
